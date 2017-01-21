@@ -15,6 +15,11 @@ duco::vector::Vector::Vector(double nvars, ...) {
   length = nvars;
 }
 
+duco::vector::Vector::Vector(const Vector &clone) {
+  vals = clone.vals;
+  length = clone.length;
+}
+
 duco::vector::Vector::~Vector() {
   vals.clear();
   length = 0;

@@ -6,3 +6,5 @@
 #include "trigonometry/trigonometry.hpp"
 #include "vector/functions.hpp"
 #include "vector/vector.hpp"
+#include <pessum.h>
+using namespace pessum::logging;

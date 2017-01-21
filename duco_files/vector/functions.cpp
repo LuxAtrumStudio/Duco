@@ -5,48 +5,98 @@
 #include <string>
 #include <vector>
 
-double duco::vector::Dot(Vector v, Vector w) {
+double duco::vector::Dot(Vector a, Vector b) {
   double product = 0;
-  if (v.length != w.length) {
+  if (a.length != b.length) {
+    LogLoc(WARNING, "Vectors must have same length for dot product", lvec,
+           "Dot");
     return (0);
-  } else if (v.length == w.length) {
-    for (int i = 0; i < v.length; i++) {
-      product += (v.vals[i] * w.vals[i]);
+  } else if (a.length == b.length) {
+    for (int i = 0; i < a.length; i++) {
+      product += (a.vals[i] * b.vals[i]);
     }
   }
   return (product);
 }
 
-duco::vector::Vector duco::vector::Cross(Vector v, Vector w) {
+duco::vector::Vector duco::vector::Cross(Vector a, Vector b) {
   Vector cross;
-  if (v.length != 3 || w.length != 3) {
+  if (a.length != 3 || b.length != 3) {
+    LogLoc(WARNING, "Vectors must have length of 3 for cross product", lvec,
+           "Cross");
     return (cross);
-  } else if (v.length == 3 && w.length == 3) {
-    cross.PushBack((v.vals[1] * w.vals[2]) - (w.vals[1] * v.vals[2]));
-    cross.PushBack((w.vals[0] * v.vals[2]) - (v.vals[0] * w.vals[2]));
-    cross.PushBack((v.vals[0] * w.vals[1]) - (w.vals[0] * v.vals[1]));
+  } else if (a.length == 3 && b.length == 3) {
+    cross.PushBack((a.vals[1] * b.vals[2]) - (b.vals[1] * a.vals[2]));
+    cross.PushBack((b.vals[0] * a.vals[2]) - (a.vals[0] * b.vals[2]));
+    cross.PushBack((a.vals[0] * b.vals[1]) - (b.vals[0] * a.vals[1]));
   }
   return (cross);
 }
 
-duco::vector::Vector duco::vector::Add(Vector v, Vector w, double alpha,
+duco::vector::Vector duco::vector::Add(Vector a, Vector b, double alpha,
                                        double beta) {
   Vector sum;
-  v.ScalarMultiply(alpha);
-  w.ScalarMultiply(beta);
-  if (v.length != w.length) {
+  if (alpha != 1) {
+    a.ScalarMultiply(alpha);
+  }
+  if (beta != 1) {
+    b.ScalarMultiply(beta);
+  }
+  if (a.length != b.length) {
+    LogLoc(WARNING, "Vectors must have same length for addition", lvec, "Add");
     return (sum);
-  } else if (v.length == w.length) {
-    for (int i = 0; i < v.length; i++) {
-      sum.PushBack(v.vals[i] + w.vals[i]);
+  } else if (a.length == b.length) {
+    for (int i = 0; i < a.length; i++) {
+      sum.PushBack(a.vals[i] + b.vals[i]);
     }
   }
   return (sum);
 }
 
-double duco::vector::Angle(Vector v, Vector w) {
-  double dot = Dot(v, w), vmag = v.Magnitude(), wmag = w.Magnitude();
-  double angle = (dot) / (vmag + wmag);
+double duco::vector::Angle(Vector a, Vector b) {
+  double dot = Dot(a, b), amag = a.Magnitude(), bmag = b.Magnitude();
+  double angle = (dot) / (amag + bmag);
   angle = acos(angle);
   return (angle);
+}
+
+duco::vector::Vector duco::vector::Multiply(Vector a, Vector b, double alpha,
+                                            double beta) {
+  Vector product;
+  if (alpha != 1) {
+    a.ScalarMultiply(alpha);
+  }
+  if (beta != 1) {
+    b.ScalarMultiply(beta);
+  }
+  if (a.length != b.length) {
+    LogLoc(WARNING, "Vectors must have same length for multiplication", lvec,
+           "Multiply");
+    return (product);
+  } else if (a.length == b.length) {
+    for (int i = 0; i < a.length; i++) {
+      product.PushBack(a.vals[i] * b.vals[i]);
+    }
+  }
+  return (product);
+}
+duco::vector::Vector duco::vector::Divide(Vector a, Vector b, double alpha,
+                                          double beta) {
+  Vector product;
+  if (alpha != 1) {
+    a.ScalarMultiply(alpha);
+  }
+  if (beta != 1) {
+    b.ScalarMultiply(beta);
+  }
+  if (a.length != b.length) {
+    LogLoc(WARNING, "Vectors must have same length for division", lvec,
+           "Divide");
+    return (product);
+  } else if (a.length == b.length) {
+    for (int i = 0; i < a.length; i++) {
+      product.PushBack(a.vals[i] / b.vals[i]);
+    }
+  }
+  return (product);
 }

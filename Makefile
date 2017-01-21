@@ -4,7 +4,7 @@ TOTAL_OBJ_FILES = $(wildcard */*.o) $(wildcard */*/*.o) $(wildcard */*/*/*.o)
 HEADER_FILES = $(wildcard *.hpp) $(wildcard */*.hpp) $(wildcard */*/*.hpp) $(wildcard */*/*/*.hpp)
 CC = clang++
 COMPILER_FLAGS = -MMD -std=c++11 -w -c
-LINKER_FLAGS =
+LINKER_FLAGS = -lpessum
 PROGRAM_NAME = duco
 
 all: subsystem top_obj $(PROGRAM_NAME)

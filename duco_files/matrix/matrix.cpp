@@ -1,6 +1,7 @@
 #include "../duco_headers.hpp"
 #include "matrix.hpp"
 #include <math.h>
+#include <pessum.h>
 #include <stdarg.h>
 #include <string>
 #include <vector>
@@ -10,6 +11,8 @@ duco::matrix::Matrix::SubDeterminate(std::vector<std::vector<double>> matrix) {
   double det = 0;
   int nrow = matrix[0].size(), ncol = matrix.size();
   if (nrow != ncol) {
+    LogLoc(WARNING, "Determinate matrix must be square", lmat,
+           "SubDeterminate");
     return (0);
   } else if (nrow == 2 && ncol == 2) {
     det = (matrix[0][0] * matrix[1][1]) - (matrix[1][0] * matrix[0][1]);
@@ -65,9 +68,95 @@ duco::matrix::Matrix::~Matrix() {
   cols = 0;
 }
 
-double duco::matrix::Matrix::Determinate() {
-  double det = SubDeterminate(vals);
-  return (det);
+void duco::matrix::Matrix::PopBackCol() {
+  if (cols > 0) {
+    for (int i = 0; i < rows; i++) {
+      vals[i].pop_back();
+    }
+    cols--;
+  }
+}
+
+void duco::matrix::Matrix::PopBackRow() {
+  if (rows > 0) {
+    vals.pop_back();
+    rows--;
+  }
+}
+
+void duco::matrix::Matrix::PushBackCol(vector::Vector col) {
+  if (col.length != rows) {
+    LogLoc(WARNING, "Col size must be equal to matrix row count", lmat,
+           "PushBackCol");
+  } else if (col.length == rows) {
+    for (int i = 0; i < rows; i++) {
+      vals[i].push_back(col.vals[i]);
+    }
+    cols++;
+  }
+}
+
+void duco::matrix::Matrix::PushBackCol(std::vector<double> col) {
+  if (col.size() != rows) {
+    LogLoc(WARNING, "Col size must be equal to matrix row count", lmat,
+           "PushBackCol");
+  } else if (col.size() == rows) {
+    for (int i = 0; i < rows; i++) {
+      vals[i].push_back(col[i]);
+    }
+    cols++;
+  }
+}
+
+void duco::matrix::Matrix::PushBackRow(vector::Vector row) {
+  if (row.length != cols) {
+    LogLoc(WARNING, "Row size must be equal to matrix col count", lmat,
+           "PushBackRow");
+  } else if (row.length == cols) {
+    vals.push_back(row.vals);
+    rows++;
+  }
+}
+
+void duco::matrix::Matrix::PushBackRow(std::vector<double> row) {
+  if (row.size() != cols) {
+    LogLoc(WARNING, "Row size must be equal to matrix col count", lmat,
+           "PushBackRow");
+  } else if (row.size() == cols) {
+    vals.push_back(row);
+    rows++;
+  }
+}
+
+void duco::matrix::Matrix::Resize(int nrow, int ncol) {
+  while (rows > nrow) {
+    PopBackRow();
+  }
+  while (cols > ncol) {
+    PopBackCol();
+  }
+  std::vector<double> row(cols, 0);
+  while (rows < nrow) {
+    PushBackRow(row);
+  }
+  std::vector<double> col(rows, 0);
+  while (cols < ncol) {
+    PushBackCol(col);
+  }
+}
+
+void duco::matrix::Matrix::SetVals(Matrix vars) {
+  vals = vars.vals;
+  rows = vars.rows;
+  cols = vars.cols;
+  valcount = vars.valcount;
+}
+
+void duco::matrix::Matrix::SetVals(std::vector<std::vector<double>> vars) {
+  vals = vars;
+  rows = vars.size();
+  cols = vars[0].size();
+  valcount = rows * cols;
 }
 
 void duco::matrix::Matrix::Transpose() {
@@ -85,14 +174,27 @@ void duco::matrix::Matrix::Transpose() {
   cols = trow;
 }
 
-void duco::matrix::Matrix::SumRows() {
+double duco::matrix::Matrix::Determinate() {
+  double det = SubDeterminate(vals);
+  return (det);
+}
+
+void duco::matrix::Matrix::ScalarMultiply(double val) {
   for (int i = 0; i < rows; i++) {
-    for (int j = cols - 1; j > 0; j--) {
-      vals[i][0] += vals[i][j];
-      vals[i].erase(vals[i].begin() + j);
+    for (int j = 0; j < cols; j++) {
+      vals[i][j] *= val;
     }
   }
-  cols = 1;
+}
+
+double duco::matrix::Matrix::Sum() {
+  double total = 0;
+  for (int i = 0; i < rows; i++) {
+    for (int j = 0; j < cols; j++) {
+      total += vals[i][j];
+    }
+  }
+  return (total);
 }
 
 void duco::matrix::Matrix::SumCols() {
@@ -105,14 +207,52 @@ void duco::matrix::Matrix::SumCols() {
   rows = 1;
 }
 
-double duco::matrix::Matrix::Sum() {
-  double total = 0;
+void duco::matrix::Matrix::SumRows() {
   for (int i = 0; i < rows; i++) {
-    for (int j = 0; j < cols; j++) {
-      total += vals[i][j];
+    for (int j = cols - 1; j > 0; j--) {
+      vals[i][0] += vals[i][j];
+      vals[i].erase(vals[i].begin() + j);
     }
   }
-  return (total);
+  cols = 1;
+}
+
+void duco::matrix::Matrix::VectorMultiply(vector::Vector vec, int col) {
+  if (vec.length == cols && col != 1) {
+    for (int j = 0; j < cols; j++) {
+      for (int i = 0; i < rows; i++) {
+        vals[i][j] *= vec.vals[j];
+      }
+    }
+  } else if (vec.length == rows && col != -1) {
+    for (int i = 0; i < rows; i++) {
+      for (int j = 0; j < cols; j++) {
+        vals[i][j] *= vec.vals[i];
+      }
+    }
+  } else {
+    LogLoc(WARNING, "Vec size must match atleast one dymension of matrix", lmat,
+           "VectorMultiply");
+  }
+}
+
+void duco::matrix::Matrix::VectorMultiply(std::vector<double> vec, int col) {
+  if (vec.size() == cols && col != 1) {
+    for (int j = 0; j < cols; j++) {
+      for (int i = 0; i < rows; i++) {
+        vals[i][j] *= vec[j];
+      }
+    }
+  } else if (vec.size() == rows && col != -1) {
+    for (int i = 0; i < rows; i++) {
+      for (int j = 0; j < cols; j++) {
+        vals[i][j] *= vec[i];
+      }
+    }
+  } else {
+    LogLoc(WARNING, "Vec size must match atleast one dymension of matrix", lmat,
+           "VectorMultiply");
+  }
 }
 
 std::vector<std::vector<double>> duco::matrix::Matrix::GetMatrix() {
