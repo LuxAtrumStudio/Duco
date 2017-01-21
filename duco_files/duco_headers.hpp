@@ -1,4 +1,5 @@
 #include "duco_core.hpp"
 #include "manipulation/manipulation.hpp"
+#include "matrix/matrix.hpp"
 #include "notation/notation.hpp"
-#include "vector/vector.cpp"
+#include "vector/vector.hpp"

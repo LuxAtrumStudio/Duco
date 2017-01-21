@@ -7,8 +7,12 @@ std::string duco::manipulation::ReduceDouble(double val, int length) {
     for (int i = str.size() - 1; i >= 0; i--) {
       if (str[i] != '0' && str[i] != '.') {
         i = -1;
+      } else if (str[i] == '.') {
+        str.pop_back();
+        i = -1;
+      } else {
+        str.pop_back();
       }
-      str.pop_back();
     }
   } else {
     for (int i = str.size() - 1; i > length; i--) {

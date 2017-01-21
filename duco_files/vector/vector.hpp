@@ -3,16 +3,16 @@
 #include <string>
 #include <vector>
 namespace duco {
-namespace vec {
+namespace vector {
 class Vector {
 private:
+public:
   int length;
   std::vector<double> vals;
-
-public:
   Vector(double nvars = 0, ...);
   virtual ~Vector();
   double Sum();
+  void ScalarMultiply(double val);
   std::string String();
 };
 }
