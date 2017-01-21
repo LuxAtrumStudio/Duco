@@ -12,3 +12,5 @@ subsystem:
 	cd manipulation && $(MAKE)
 	cd notation && $(MAKE)
 	cd matrix && $(MAKE)
+	cd trigonometry && $(MAKE)
+	cd exponential && $(MAKE)

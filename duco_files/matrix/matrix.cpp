@@ -1,4 +1,4 @@
-#include "../manipulation/manipulation.hpp"
+#include "../duco_headers.hpp"
 #include "matrix.hpp"
 #include <math.h>
 #include <stdarg.h>
@@ -117,4 +117,22 @@ double duco::matrix::Matrix::Sum() {
 
 std::vector<std::vector<double>> duco::matrix::Matrix::GetMatrix() {
   return (vals);
+}
+
+std::string duco::matrix::Matrix::String() {
+  std::string str;
+  for (int i = 0; i < rows; i++) {
+    str += "[";
+    for (int j = 0; j < cols; j++) {
+      str += manipulation::ReduceDouble(vals[i][j]);
+      if (j != cols - 1) {
+        str += ",";
+      }
+    }
+    str += "]";
+    if (i != rows - 1) {
+      str += ",";
+    }
+  }
+  return (str);
 }

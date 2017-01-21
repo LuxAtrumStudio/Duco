@@ -1,5 +1,6 @@
 #ifndef DUCO_ARRAY_H_
 #define DUCO_ARRAY_H_
+#include <string>
 #include <vector>
 namespace duco {
 namespace matrix {
@@ -19,6 +20,7 @@ public:
   void SumCols();
   double Sum();
   std::vector<std::vector<double>> GetMatrix();
+  std::string String();
 };
 }
 }

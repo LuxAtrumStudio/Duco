@@ -1,4 +1,4 @@
-#include "../manipulation/manipulation.hpp"
+#include "../duco_headers.hpp"
 #include "vector.hpp"
 #include <math.h>
 #include <stdarg.h>

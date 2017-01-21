@@ -1,6 +1,5 @@
-#include "../manipulation/manipulation.hpp"
+#include "../duco_headers.hpp"
 #include "functions.hpp"
-#include "vector.hpp"
 #include <math.h>
 #include <stdarg.h>
 #include <string>
