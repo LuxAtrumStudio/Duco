@@ -1,5 +1,6 @@
 #include "../manipulation/manipulation.hpp"
 #include "vector.hpp"
+#include <math.h>
 #include <stdarg.h>
 #include <string>
 #include <vector>
@@ -19,6 +20,21 @@ duco::vector::Vector::~Vector() {
   length = 0;
 }
 
+void duco::vector::Vector::SetVals(std::vector<double> vars) {
+  vals = vars;
+  length = vars.size();
+}
+
+void duco::vector::Vector::PushBack(double val) {
+  vals.push_back(val);
+  length++;
+}
+
+void duco::vector::Vector::PopBack() {
+  vals.pop_back();
+  length--;
+}
+
 double duco::vector::Vector::Sum() {
   double total = 0;
   for (int i = 0; i < length; i++) {
@@ -31,6 +47,15 @@ void duco::vector::Vector::ScalarMultiply(double val) {
   for (int i = 0; i < length; i++) {
     vals[i] *= val;
   }
+}
+
+double duco::vector::Vector::Magnitude() {
+  double magnitude = 0;
+  for (int i = 0; i < length; i++) {
+    magnitude += pow(vals[i], 2);
+  }
+  magnitude = pow(magnitude, 0.5);
+  return (magnitude);
 }
 
 std::string duco::vector::Vector::String() {

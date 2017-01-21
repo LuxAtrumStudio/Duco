@@ -11,7 +11,13 @@ public:
   std::vector<double> vals;
   Vector(double nvars = 0, ...);
   virtual ~Vector();
+
+  void SetVals(std::vector<double> vars);
+  void PushBack(double val);
+  void PopBack();
+
   double Sum();
+  double Magnitude();
   void ScalarMultiply(double val);
   std::string String();
 };
