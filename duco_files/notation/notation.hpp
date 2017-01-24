@@ -1,9 +1,12 @@
-#ifndef DUCO_NOTAITON_H_
-#define DUCO_NOTAITON_H_
+#ifndef DUCO_NOTAITON_HPP
+#define DUCO_NOTAITON_HPP
 
 namespace duco {
 struct Sci {
   double val, exp;
+};
+struct Point {
+  double x, y;
 };
 }
 

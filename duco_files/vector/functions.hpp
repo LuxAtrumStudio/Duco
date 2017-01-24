@@ -1,9 +1,9 @@
-#ifndef DUCO_VECTOR_FUNCTIONS_H_
-#define DUCO_VECTOR_FUNCTIONS_H_
+#ifndef DUCO_VECTOR_FUNCTIONS_HPP
+#define DUCO_VECTOR_FUNCTIONS_HPP
 #include "vector.hpp"
 namespace duco {
 namespace vector {
-double Dot(Vector a, Vector);
+double Dot(Vector a, Vector b);
 Vector Cross(Vector a, Vector b);
 Vector Add(Vector a, Vector b, double alpha = 1, double beta = 1);
 double Angle(Vector a, Vector b);

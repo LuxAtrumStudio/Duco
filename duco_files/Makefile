@@ -14,3 +14,5 @@ subsystem:
 	cd matrix && $(MAKE)
 	cd trigonometry && $(MAKE)
 	cd exponential && $(MAKE)
+	cd equation && $(MAKE)
+	cd linear_algebra && $(MAKE)

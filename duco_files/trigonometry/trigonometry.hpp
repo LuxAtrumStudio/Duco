@@ -1,5 +1,5 @@
-#ifndef DUCO_TRIGONOMETRY_H_
-#define DUCO_TRIGONOMETRY_H_
+#ifndef DUCO_TRIGONOMETRY_HPP
+#define DUCO_TRIGONOMETRY_HPP
 #include <string>
 namespace duco {
 namespace trigonometry {

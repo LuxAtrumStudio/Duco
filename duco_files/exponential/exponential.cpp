@@ -15,12 +15,12 @@ double duco::exponential::Log(double val, double base) {
   }
 }
 double duco::exponential::Ln(double val) { return (log(val)); }
-double duco::exponential::Root(double val, double base) {
-  if (base == 2) {
+double duco::exponential::Root(double val, double degree) {
+  if (degree == 2) {
     return (sqrt(val));
-  } else if (base == 3) {
+  } else if (degree == 3) {
     return (cbrt(val));
   } else {
-    return (pow(val, (1.0 / base)));
+    return (pow(val, (1.0 / degree)));
   }
 }

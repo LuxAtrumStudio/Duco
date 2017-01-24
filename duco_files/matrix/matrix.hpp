@@ -1,17 +1,14 @@
-#ifndef DUCO_ARRAY_H_
-#define DUCO_ARRAY_H_
+#ifndef DUCO_ARRAY_HPP
+#define DUCO_ARRAY_HPP
 #include "../vector/vector.hpp"
 #include <string>
 #include <vector>
 namespace duco {
 namespace matrix {
 class Matrix {
-private:
-  double SubDeterminate(std::vector<std::vector<double>> matrix);
-
 public:
   // Structure public data
-  int valcount, rows, cols;
+  int valcount = 0, rows = 0, cols = 0;
   std::vector<std::vector<double>> vals;
   // Constructors ad destructors
   Matrix(int nrow = 0, int ncol = 0, ...);
@@ -22,10 +19,10 @@ public:
   void PopBackRow();
   void PushBackCol(vector::Vector col);
   void PushBackCol(std::vector<double> col);
-  void PushBackRow(vector::Vector col);
+  void PushBackRow(vector::Vector row);
   void PushBackRow(std::vector<double> row);
   void Resize(int nrow, int ncol);
-  void SetVals(Matrix);
+  void SetVals(Matrix vars);
   void SetVals(std::vector<std::vector<double>> vars);
   void Transpose();
   // Local calculations
@@ -39,6 +36,9 @@ public:
   // Return functions
   std::vector<std::vector<double>> GetMatrix();
   std::string String();
+
+private:
+  double SubDeterminate(std::vector<std::vector<double>> matrix);
 };
 }
 }

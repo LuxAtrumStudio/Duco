@@ -1,5 +1,5 @@
-#ifndef DUCO_MANIPULATION_H_
-#define DUCO_MANIPULATION_H_
+#ifndef DUCO_MANIPULATION_HPP
+#define DUCO_MANIPULATION_HPP
 #include <string>
 namespace duco {
 namespace manipulation {

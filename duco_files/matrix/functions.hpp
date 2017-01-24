@@ -1,5 +1,5 @@
-#ifndef DUCO_MATRIX_FUNCTIONS_H_
-#define DUCO_MATRIX_FUNCTIONS_H_
+#ifndef DUCO_MATRIX_FUNCTIONS_HPP
+#define DUCO_MATRIX_FUNCTIONS_HPP
 #include "matrix.hpp"
 namespace duco {
 namespace matrix {

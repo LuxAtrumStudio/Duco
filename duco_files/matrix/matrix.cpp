@@ -85,7 +85,7 @@ void duco::matrix::Matrix::PopBackRow() {
 }
 
 void duco::matrix::Matrix::PushBackCol(vector::Vector col) {
-  if (col.length != rows) {
+  if (col.length != rows && rows != 0) {
     LogLoc(WARNING, "Col size must be equal to matrix row count", lmat,
            "PushBackCol");
   } else if (col.length == rows) {
@@ -93,11 +93,17 @@ void duco::matrix::Matrix::PushBackCol(vector::Vector col) {
       vals[i].push_back(col.vals[i]);
     }
     cols++;
+  } else if (rows == 0) {
+    for (int i = 0; i < col.length; i++) {
+      PushBackRow(col.vals[i]);
+    }
+    cols++;
+    rows = col.length;
   }
 }
 
 void duco::matrix::Matrix::PushBackCol(std::vector<double> col) {
-  if (col.size() != rows) {
+  if (col.size() != rows && rows != 0) {
     LogLoc(WARNING, "Col size must be equal to matrix row count", lmat,
            "PushBackCol");
   } else if (col.size() == rows) {
@@ -105,26 +111,42 @@ void duco::matrix::Matrix::PushBackCol(std::vector<double> col) {
       vals[i].push_back(col[i]);
     }
     cols++;
+  } else if (rows == 0) {
+    for (int i = 0; i < col.size(); i++) {
+      PushBackRow(col[i]);
+    }
+    cols++;
+    rows = col.size();
   }
 }
 
 void duco::matrix::Matrix::PushBackRow(vector::Vector row) {
-  if (row.length != cols) {
+  if (row.length != cols && cols != 0) {
     LogLoc(WARNING, "Row size must be equal to matrix col count", lmat,
-           "PushBackRow");
+           "PushBackRowA");
+    LogLoc(DATA, std::to_string(row.length) + ">" + std::to_string(cols));
   } else if (row.length == cols) {
     vals.push_back(row.vals);
     rows++;
+  } else if (cols == 0) {
+    vals.push_back(row.vals);
+    rows++;
+    cols = row.length;
   }
 }
 
 void duco::matrix::Matrix::PushBackRow(std::vector<double> row) {
-  if (row.size() != cols) {
+  if (row.size() != cols && cols != 0) {
     LogLoc(WARNING, "Row size must be equal to matrix col count", lmat,
            "PushBackRow");
+    LogLoc(DATA, std::to_string(row.size()) + ">" + std::to_string(cols));
   } else if (row.size() == cols) {
     vals.push_back(row);
     rows++;
+  } else if (cols == 0) {
+    vals.push_back(row);
+    rows++;
+    cols = row.size();
   }
 }
 
@@ -260,7 +282,7 @@ std::vector<std::vector<double>> duco::matrix::Matrix::GetMatrix() {
 }
 
 std::string duco::matrix::Matrix::String() {
-  std::string str;
+  std::string str = "[";
   for (int i = 0; i < rows; i++) {
     str += "[";
     for (int j = 0; j < cols; j++) {
@@ -274,5 +296,6 @@ std::string duco::matrix::Matrix::String() {
       str += ",";
     }
   }
+  str += "]";
   return (str);
 }

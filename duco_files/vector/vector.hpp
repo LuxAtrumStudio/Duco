@@ -1,11 +1,10 @@
-#ifndef DUCO_VECTOR_H_
-#define DUCO_VECTOR_H_
+#ifndef DUCO_VECTOR_HPP
+#define DUCO_VECTOR_HPP
 #include <string>
 #include <vector>
 namespace duco {
 namespace vector {
 class Vector {
-private:
 public:
   // Structure public data
   int length;
@@ -15,16 +14,20 @@ public:
   Vector(const Vector &clone);
   virtual ~Vector();
   // Data manipulation
-  void SetVals(std::vector<double> vars);
-  void PushBack(double val);
   void PopBack();
+  void PushBack(double val);
+  void Resize(int nvars);
+  void SetVals(Vector vars);
+  void SetVals(std::vector<double> vars);
   // Local calculations
-  double Sum();
   double Magnitude();
+  double Sum();
   void ScalarMultiply(double val);
   // Return functions
   std::vector<double> GetVector();
   std::string String();
+
+private:
 };
 }
 }
