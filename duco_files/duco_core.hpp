@@ -1,10 +1,7 @@
-#ifndef DUCO_DUCO_CORE_HPP
-#define DUCO_DUCO_CORE_HPP
-
+#ifndef DUCO
+#define DUCO
 namespace duco {
-extern int lduc, lexp, lman, lmat, lnot, ltri, lvec;
-void InitializeDuco();
-void TerminateDuco();
+void InitDuco();
+void TermDuco();
 }
-
 #endif

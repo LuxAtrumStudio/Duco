@@ -54,6 +54,8 @@ duco::matrix::Matrix::Matrix(int nrow, int ncol, ...) {
   }
 }
 
+duco::matrix::Matrix::Matrix(int nrow, int ncol) {}
+
 duco::matrix::Matrix::Matrix(const Matrix &clone) {
   vals = clone.vals;
   valcount = clone.valcount;

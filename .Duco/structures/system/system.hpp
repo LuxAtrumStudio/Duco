@@ -1,0 +1,4 @@
+#ifndef DUCO_STRUCT_SYSTEM_HPP
+#define DUCO_STRUCT_SYSTEM_HPP
+
+#endif

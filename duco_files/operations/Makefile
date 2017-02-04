@@ -8,5 +8,5 @@ all: subsystem $(DIR_OBJ_FILES)
 
 .PHONY : subsystem
 subsystem:
-	cd classes && $(MAKE)
-	cd operations && $(MAKE)
+	cd matrix && $(MAKE)
+	cd vector && $(MAKE)

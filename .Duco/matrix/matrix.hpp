@@ -12,8 +12,9 @@ public:
   std::vector<std::vector<double>> vals;
   // Constructors ad destructors
   Matrix(int nrow = 0, int ncol = 0, ...);
+  Matrix(int nrow = 0, int ncol = 0);
   Matrix(const Matrix &clone);
-  virtual ~Matrix();
+  ~Matrix();
   // Data manipulation
   void PopBackCol();
   void PopBackRow();
