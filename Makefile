@@ -12,7 +12,7 @@ PROGRAM_NAME = Duco
 all: subsystem top_obj $(PROGRAM_NAME)
 	@echo Compleated compiling $(PROGRAM_NAME)
 
-$(PROGRAM_NAME): $(OBJ_FILES)
+$(PROGRAM_NAME): $(TOP_DIR) $(OBJ_FILES)
 	$(COMPILER) $(TOP_DIR) $(OBJ_FILES) -o $(PROGRAM_NAME) $(LINKER_FLAGS)
 
 .PHONY : top_obj

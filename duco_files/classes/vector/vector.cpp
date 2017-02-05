@@ -112,3 +112,11 @@ std::string duco::vector::Vector::GetString() {
   str += ">";
   return (str);
 }
+
+double duco::vector::Vector::GetVal(int n) {
+  if (n >= 0 && n < length) {
+    return (vals[n]);
+  } else {
+    return (0);
+  }
+}

@@ -28,6 +28,7 @@ public:
   int GetLength();
   std::vector<double> GetVector();
   std::string GetString();
+  double GetVal(int n);
 
 private:
   int length;

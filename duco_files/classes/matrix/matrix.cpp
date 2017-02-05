@@ -99,18 +99,34 @@ void duco::matrix::Matrix::PopBackCol() {
 }
 
 void duco::matrix::Matrix::PushBackRow(std::vector<double> row) {
-  if (row.size() == cols) {
+  if (row.size() == cols || cols == 0) {
     vals.push_back(row);
     rows++;
+    if (cols == 0) {
+      cols = row.size();
+    }
+  }
+}
+
+void duco::matrix::Matrix::PushBackRow(duco::vector::Vector row) {
+  if (row.GetLength() == cols || cols == 0) {
+    vals.push_back(row.GetVector());
+    rows++;
+    if (cols == 0) {
+      cols = row.GetLength();
+    }
   }
 }
 
 void duco::matrix::Matrix::PushBackCol(std::vector<double> col) {
-  if (col.size() == rows) {
+  if (col.size() == rows || rows == 0) {
     for (int i = 0; i < rows; i++) {
       vals[i].push_back(col[i]);
     }
     cols++;
+    if (rows == 0) {
+      rows = col.size();
+    }
   }
 }
 
@@ -143,6 +159,12 @@ void duco::matrix::Matrix::Transpose() {
   SetVals(newvals);
 }
 
+void duco::matrix::Matrix::SetVal(int row, int col, double val) {
+  if (row < rows && row >= 0 && col < cols && col >= 0) {
+    vals[row][col] = val;
+  }
+}
+
 void duco::matrix::Matrix::ScalarMultiply(double val) {
   for (int i = 0; i < rows; i++) {
     for (int j = 0; j < cols; j++) {
@@ -163,6 +185,14 @@ double duco::matrix::Matrix::Total() {
     }
   }
   return (total);
+}
+
+double duco::matrix::Matrix::Trace() {
+  double trace = 0;
+  for (int i = 0; i < rows && i < cols; i++) {
+    trace += vals[i][i];
+  }
+  return (trace);
 }
 
 int duco::matrix::Matrix::GetRows() { return (rows); }
@@ -194,6 +224,22 @@ std::string duco::matrix::Matrix::GetString() {
   }
   str += "]";
   return (str);
+}
+
+double duco::matrix::Matrix::GetVal(int row, int col) {
+  if (row < rows && row >= 0 && col < cols && col >= 0) {
+    return (vals[row][col]);
+  } else {
+    return (0);
+  }
+}
+
+std::vector<duco::vector::Vector> duco::matrix::Matrix::GetVectors() {
+  std::vector<duco::vector::Vector> vecs;
+  for (int i = 0; i < vals.size(); i++) {
+    vecs.push_back(duco::vector::Vector(vals[i]));
+  }
+  return (vecs);
 }
 
 double duco::matrix::Matrix::RecursiveDeterminate(
