@@ -267,10 +267,6 @@ double duco::equation::Equation::SolveSection(int open, int close) {
       sectionterms.push_back(terms[i]);
     }
   }
-  for (int n = 0; n < sectionterms.size(); n++) {
-    std::cout << sectionterms[n].name << " ";
-  }
-  std::cout << "\n";
   for (int i = sectionterms.size() - 1; i >= 0; i--) {
     if (sectionterms[i].unary == true && sectionterms[i].termtype == 2) {
       sectionterms[i].termtype = 1;

@@ -8,13 +8,14 @@ OBJ_FILES += $(wildcard */*/*/*.o)
 OBJ_FILES += $(wildcard */*/*/*/*.o)
 OBJ_FILES += $(wildcard */*/*/*/*/*.o)
 OBJ_FILES += $(wildcard */*/*/*/*/*/*.o)
-LINKER_FLAGS = -lSDL2 -lSDL2_image -lSDL2_ttf -lSDL2_mixer -lpessum
+LINKER_FLAGS = -lpessum
 PROGRAM_NAME = duco
 
 all: $(TOP_DIR) subsystem $(PROGRAM_NAME)
 	@setterm -fore green
 	@printf "==========>Successfuly compiled $(PROGRAM_NAME)<==========\n"
 	@setterm -fore white
+	@echo $(HEAD)
 
 $(PROGRAM_NAME): $(TOP_DIR) $(OBJ_FILES)
 	@setterm -fore red
@@ -52,6 +53,10 @@ tar: clean
 
 .PHONY : lib
 lib: all
+	ar rcs lib$(PROGRAM_NAME).a $(OBJ_FILES)
+	sudo cp lib$(PROGRAM_NAME).a /usr/local/lib/ -u
+	sudo cp duco.h /usr/local/include/ -u
+	sudo find . -name '*.hpp' -exec cp --parents \{\} /usr/local/include/ \;
 
 .PHONY : log
 log:
