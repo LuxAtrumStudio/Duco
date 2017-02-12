@@ -1,12 +1,18 @@
 CPP_FILES = $(wildcard *.cpp)
-DIR_OBJ_FILES := $(notdir $(CPP_FILES:.cpp=.o))
+OBJ_FILES = $(notdir $(CPP_FILES:.cpp=.o))
 
-all: subsystem $(DIR_OBJ_FILES)
+all: $(OBJ_FILES) subsystem
 
 %.o: %.cpp %.hpp
 	$(COMPILER) $(COMPILER_FLAGS) -o $(notdir $*).o $*.cpp
 
 .PHONY : subsystem
 subsystem:
-	cd classes && $(MAKE)
-	cd operations && $(MAKE)
+	@setterm -fore blue
+	@printf "CLASSES\n"
+	@setterm -fore white
+	@cd classes && $(MAKE)
+	@setterm -fore green
+	@printf "OPERATIONS\n"
+	@setterm -fore white
+	@cd operations && $(MAKE)
