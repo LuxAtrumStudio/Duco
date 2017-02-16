@@ -19,6 +19,7 @@ public:
   ~Equation();
   double SolveEquation(std::vector<std::pair<std::string, double>> vals);
   double SolveEquation(double val);
+  std::vector<std::pair<std::string, double>> GetVariables();
 
 private:
   std::string eqstr;

@@ -40,6 +40,17 @@ double duco::equation::Equation::SolveEquation(double val) {
   return (SolveEquation({var}));
 }
 
+std::vector<std::pair<std::string, double>>
+duco::equation::Equation::GetVariables() {
+  std::vector<std::pair<std::string, double>> vars;
+  for (int i = 0; i < terms.size(); i++) {
+    if (terms[i].termtype == 3) {
+      vars.push_back(std::make_pair(terms[i].name, 0));
+    }
+  }
+  return (vars);
+}
+
 void duco::equation::Equation::Parse() {
   Term currentterm;
   Term add, sub, mul, divi;
