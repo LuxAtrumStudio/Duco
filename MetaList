@@ -1,42 +1,42 @@
-->Algebra
-  -->elementary
-  -->linear
-  multi-linear
-  abstract
-->Arithmetic/Number Theory
-  -->Rounding
-->Calculus
-Category Theory
-Combinatorics
-Computation
-Control Theory
-Differential Equations/Dynamical systems
-Functional Analysis
-Game Theory
--->Geometry
-  Discrete
-  Algebraic
-  Analytic
-  Differential
-  Finite
-Graph Theory
-History of Mathematics
-Information Theory
-Lie Theory
-Mathematics and Art
-Mathematics Education
-Mathematical logic
-Mathematical Physics
-Mathematical Statistics
-Numerical Analysis
-Optimization
-Order Theory
-Philosophy of Mathematics
-Philosophy of Mathematics Education
-->Probability
-recreational Mathematics
-Representation Theory
-Set Theory
-->Statistics
-Topology
-->Trigonometry
+[ ]->Algebra
+[ ]  -->elementary
+[ ]  -->linear
+[ ]  multi-linear
+[ ]  abstract
+[X]->Arithmetic/Number Theory
+[X]  -->Rounding
+[ ]->Calculus
+[ ]Category Theory
+[ ]Combinatorics
+[ ]Computation
+[ ]Control Theory
+[ ]Differential Equations/Dynamical systems
+[ ]Functional Analysis
+[ ]Game Theory
+[ ]-->Geometry
+[ ]  Discrete
+[ ]  Algebraic
+[ ]  Analytic
+[ ]  Differential
+[ ]  Finite
+[ ]Graph Theory
+[ ]History of Mathematics
+[ ]Information Theory
+[ ]Lie Theory
+[ ]Mathematics and Art
+[ ]Mathematics Education
+[ ]Mathematical logic
+[ ]Mathematical Physics
+[ ]Mathematical Statistics
+[ ]Numerical Analysis
+[ ]Optimization
+[ ]Order Theory
+[ ]Philosophy of Mathematics
+[ ]Philosophy of Mathematics Education
+[ ]->Probability
+[ ]recreational Mathematics
+[ ]Representation Theory
+[ ]Set Theory
+[ ]->Statistics
+[ ]Topology
+[ ]->Trigonometry

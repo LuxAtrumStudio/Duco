@@ -14,3 +14,9 @@ subsystem:
 	@printf "ARITHMETIC\n"
 	@setterm -fore white
 	@cd arithmetic && $(MAKE)
+	@setterm -fore green
+	@printf "OPERATIONS/"
+	@setterm -fore green
+	@printf "TRIGONOMETRY\n"
+	@setterm -fore white
+	@cd trigonometry && $(MAKE)

@@ -12,7 +12,10 @@ double Round(double a, double integer = 1);
 double Floor(double a, double integer = 1);
 double Ceil(double a, double integer = 1);
 double Pow(double a, double b);
+double Root(double a, double b);
 double Log(double a, double b);
+double Abs(double a);
+double Hypot(double a, double b);
 }
 }
 }

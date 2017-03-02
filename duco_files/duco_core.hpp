@@ -1,4 +1,6 @@
 #ifndef DUCO_HPP
 #define DUCO_HPP
-namespace duco {}
+namespace duco {
+void InitializeDuco();
+}
 #endif

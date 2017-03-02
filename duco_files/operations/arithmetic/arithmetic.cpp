@@ -1,6 +1,5 @@
 #include "arithmetic.hpp"
 #include <cmath>
-#include <iostream>
 #include <pessum.h>
 
 double duco::operation::arithmetic::Add(double a, double b) { return (a + b); }
@@ -13,7 +12,8 @@ double duco::operation::arithmetic::Div(double a, double b) {
   if (b != 0) {
     return (a / b);
   } else if (b == 0) {
-    pessum::logging::Log("warning", "Cannot divide by 0", "duc/ope/ari", "Div");
+    pessum::logging::Log("warning", "Dividing by 0 produces Nan", "duc/ope/ari",
+                         "Div");
   }
   return (0.0);
 }
@@ -53,6 +53,17 @@ double duco::operation::arithmetic::Pow(double a, double b) {
   return (a);
 }
 
+double duco::operation::arithmetic::Root(double a, double b) {
+  if (a < 0.0) {
+    pessum::logging::Log("warning",
+                         "Root of number less than zero produces Nan",
+                         "duc/ope/ari", "Root");
+  } else {
+    a = pow(a, (1.0 / b));
+  }
+  return (a);
+}
+
 double duco::operation::arithmetic::Log(double a, double b) {
   if (a == 0 || b == 0) {
     pessum::logging::Log("warning", "Input is out of domain", "duc/ope/ari",
@@ -64,4 +75,10 @@ double duco::operation::arithmetic::Log(double a, double b) {
     a = (log(a) / log(b));
   }
   return (a);
+}
+
+double duco::operation::arithmetic::Abs(double a) { return (fabs(a)); }
+
+double duco::operation::arithmetic::Hypot(double a, double b) {
+  return (sqrt(pow(a, 2) + pow(b, 2)));
 }
