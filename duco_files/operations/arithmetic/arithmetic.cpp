@@ -18,8 +18,8 @@ double duco::operation::arithmetic::Div(double a, double b) {
   return (0.0);
 }
 
-double duco::operation::arithmetic::Round(double a, double integer) {
-  a *= pow(10, floor(integer));
+double duco::operation::arithmetic::Round(double a, int integer) {
+  a *= pow(10, integer);
   if (fmod(a, 0.5) == 0) {
     if (fmod(a + 0.5, 2) == 0) {
       a += 0.5;
@@ -30,21 +30,21 @@ double duco::operation::arithmetic::Round(double a, double integer) {
     a += 0.5;
     a = floor(a);
   }
-  a /= pow(10, floor(integer));
+  a /= pow(10, integer);
   return (a);
 }
 
-double duco::operation::arithmetic::Floor(double a, double integer) {
-  a *= pow(10, floor(integer));
+double duco::operation::arithmetic::Floor(double a, int integer) {
+  a *= pow(10, integer);
   a = floor(a);
-  a /= pow(10, floor(integer));
+  a /= pow(10, integer);
   return (a);
 }
 
-double duco::operation::arithmetic::Ceil(double a, double integer) {
-  a *= pow(10, floor(integer));
+double duco::operation::arithmetic::Ceil(double a, int integer) {
+  a *= pow(10, integer);
   a = ceil(a);
-  a /= pow(10, floor(integer));
+  a /= pow(10, integer);
   return (a);
 }
 

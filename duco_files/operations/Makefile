@@ -20,3 +20,9 @@ subsystem:
 	@printf "TRIGONOMETRY\n"
 	@setterm -fore white
 	@cd trigonometry && $(MAKE)
+	@setterm -fore green
+	@printf "OPERATIONS/"
+	@setterm -fore cyan
+	@printf "METHOD\n"
+	@setterm -fore white
+	@cd method && $(MAKE)

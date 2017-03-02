@@ -3,9 +3,12 @@
 #include <vector>
 
 void duco::InitializeDuco() {
-  std::vector<std::string> locations = {"duco", "duco/operation",
+  std::vector<std::string> locations = {"duco",
+                                        "duco/operation",
                                         "duco/operation/arithmetic",
-                                        "duco/operation/trigonometry"};
+                                        "duco/operation/trigonometry",
+                                        "duco/operation/method",
+                                        "duco/opertion/argument"};
   for (int i = 0; i < locations.size(); i++) {
     pessum::logging::AddLogLocation(locations[i]);
   }

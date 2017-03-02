@@ -40,3 +40,14 @@
 [ ]->Statistics
 [ ]Topology
 [ ]->Trigonometry
+
+
+
+
+Types
+
+bool = 1 b
+int = 2 i
+double = 3 d
+string = 4 s
+matrix = 5 m

@@ -1,3 +1,5 @@
 #include "arithmetic/arithmetic.hpp"
+#include "method/argument.hpp"
+#include "method/method.hpp"
 #include "operation_core.hpp"
 #include "trigonometry/trigonometry.hpp"
