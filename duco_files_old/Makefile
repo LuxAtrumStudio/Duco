@@ -9,9 +9,9 @@ all: $(OBJ_FILES) subsystem
 .PHONY : subsystem
 subsystem:
 	@setterm -fore blue
-	@printf "EQUATION\n"
+	@printf "CLASSES\n"
 	@setterm -fore white
-	@cd equation && $(MAKE)
+	@cd classes && $(MAKE)
 	@setterm -fore green
 	@printf "OPERATIONS\n"
 	@setterm -fore white

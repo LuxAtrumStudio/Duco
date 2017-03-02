@@ -1,29 +1,24 @@
 #include "operation_core.hpp"
 #include "operation_headers.hpp"
+#include <functional>
 #include <map>
+#include <pessum.h>
 #include <string>
 
 namespace duco {
-std::map<std::string, std::function<double(double)>> unaryopmap;
-std::map<std::string, std::function<double(double, double)>> binaryopmap;
+namespace operation {
+std::map<std::string, std::function<double(double, double)>> ops;
+}
 }
 
-void duco::LoadOperMap() {
-  unaryopmap["SIN"] = trigonometric::Sin;
-  unaryopmap["COS"] = trigonometric::Cos;
-  unaryopmap["TAN"] = trigonometric::Tan;
-  unaryopmap["COT"] = trigonometric::Cot;
-  unaryopmap["SEC"] = trigonometric::Sec;
-  unaryopmap["CSC"] = trigonometric::Csc;
-  unaryopmap["ARCSIN"] = trigonometric::ArcSin;
-  unaryopmap["ARCCOS"] = trigonometric::ArcCos;
-  unaryopmap["ARCTAN"] = trigonometric::ArcTan;
-  unaryopmap["ARCCOT"] = trigonometric::ArcCot;
-  unaryopmap["ARCSEC"] = trigonometric::ArcSec;
-  unaryopmap["ARCCSC"] = trigonometric::ArcCsc;
-
-  binaryopmap["ADD"] = arithmetic::Add;
-  binaryopmap["SUB"] = arithmetic::Sub;
-  binaryopmap["MUL"] = arithmetic::Mul;
-  binaryopmap["DIV"] = arithmetic::Div;
+void duco::operation::LoadArithmeticOperations() {
+  ops["ADD"] = arithmetic::Add;
+  ops["SUB"] = arithmetic::Sub;
+  ops["MUL"] = arithmetic::Mul;
+  ops["DIV"] = arithmetic::Div;
+  ops["ROUND"] = arithmetic::Round;
+  ops["FLOOR"] = arithmetic::Floor;
+  ops["CEIL"] = arithmetic::Ceil;
+  ops["POW"] = arithmetic::Pow;
+  ops["LOG"] = arithmetic::Log;
 }

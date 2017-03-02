@@ -8,9 +8,3 @@ all: $(DIR_OBJ_FILES) subsystem
 
 .PHONY : subsystem
 subsystem:
-	@setterm -fore green
-	@printf "OPERATIONS/"
-	@setterm -fore blue
-	@printf "ARITHMETIC\n"
-	@setterm -fore white
-	@cd arithmetic && $(MAKE)

@@ -1,11 +1,12 @@
-#ifndef DUCO_OPERATION
-#define DUCO_OPERATION
+#ifndef DUCO_OPERATION_HPP
+#define DUCO_OPERATION_HPP
 #include <functional>
 #include <map>
 #include <string>
 namespace duco {
-extern std::map<std::string, std::function<double(double)>> unaryopmap;
-extern std::map<std::string, std::function<double(double, double)>> binaryopmap;
-void LoadOperMap();
+namespace operation {
+extern std::map<std::string, std::function<double(double, double)>> ops;
+void LoadArithmeticOperations();
+}
 }
 #endif

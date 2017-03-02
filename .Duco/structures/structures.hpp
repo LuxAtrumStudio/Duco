@@ -1,5 +1,0 @@
-#include "equation/equation.hpp"
-#include "matrix/matrix.hpp"
-#include "system/system.hpp"
-#include "term/term.hpp"
-#include "vector/vector.hpp"
